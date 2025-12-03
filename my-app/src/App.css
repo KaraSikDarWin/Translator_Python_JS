@@ -1,0 +1,275 @@
+/* App.css */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(135deg, #0a2f1d 0%, #1a4731 100%);
+  color: #e8f5e8;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+.App {
+  min-height: 100vh;
+}
+
+/* Header Styles */
+header {
+  background: rgba(10, 40, 25, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 1.5rem 0;
+  border-bottom: 2px solid #2d9c69;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+header h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(45deg, #4caf70, #81c784);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 2px 10px rgba(76, 175, 112, 0.3);
+}
+
+/* Main Container */
+.App > :not(header) {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Areas Component Layout */
+textarea {
+  width: 100%;
+  height: 400px;
+  background: rgba(15, 35, 25, 0.9);
+  border: 2px solid #2d9c69;
+  border-radius: 12px;
+  padding: 1.5rem;
+  color: #e8f5e8;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  resize: vertical;
+  transition: all 0.3s ease;
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+textarea:focus {
+  outline: none;
+  border-color: #4caf70;
+  box-shadow: 
+    inset 0 2px 10px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(45, 156, 105, 0.4);
+  background: rgba(20, 45, 30, 0.95);
+}
+
+textarea::placeholder {
+  color: #7aa390;
+  font-style: italic;
+}
+
+/* Two Column Layout */
+textarea:first-of-type {
+  margin-right: 1rem;
+}
+
+textarea:last-of-type {
+  margin-left: 1rem;
+  background: rgba(20, 40, 30, 0.8);
+  border-color: #388e3c;
+}
+
+/* Button Styles */
+p {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+button {
+  background: linear-gradient(45deg, #2d9c69, #4caf70);
+  color: white;
+  border: none;
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(45, 156, 105, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(45, 156, 105, 0.6);
+  background: linear-gradient(45deg, #4caf70, #66bb6a);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(45, 156, 105, 0.4);
+}
+
+
+h3 {
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 2rem 0 1rem 0;
+  color: #81c784;
+  font-weight: 600;
+}
+
+
+h3 + p textarea {
+  height: 200px;
+  background: rgba(10, 25, 18, 0.95);
+  border-color: #1b5e20;
+  color: #a5d6a7;
+}
+
+@media (min-width: 768px) {
+  textarea:first-of-type,
+  textarea:last-of-type {
+    width: calc(50% - 1rem);
+    display: inline-block;
+    vertical-align: top;
+  }
+}
+
+@media (max-width: 767px) {
+  .App > :not(header) {
+    padding: 1rem;
+  }
+  
+  textarea:first-of-type,
+  textarea:last-of-type {
+    margin: 0 0 1rem 0;
+    display: block;
+  }
+  
+  header h1 {
+    font-size: 2rem;
+  }
+  
+  textarea {
+    height: 300px;
+  }
+}
+
+textarea::-webkit-scrollbar {
+  width: 8px;
+}
+
+textarea::-webkit-scrollbar-track {
+  background: rgba(20, 40, 30, 0.5);
+  border-radius: 4px;
+}
+
+textarea::-webkit-scrollbar-thumb {
+  background: #2d9c69;
+  border-radius: 4px;
+}
+
+textarea::-webkit-scrollbar-thumb:hover {
+  background: #4caf70;
+}
+
+textarea {
+  background-image: 
+    linear-gradient(rgba(45, 156, 105, 0.1) 1px, transparent 0),
+    linear-gradient(90deg, rgba(45, 156, 105, 0.1) 1px, transparent 0);
+  background-size: 20px 20px;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+
+button:focus {
+  animation: pulse 0.6s ease-in-out;
+}
+
+
+header {
+  background: rgba(10, 40, 25, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 1.5rem 0;
+  border-bottom: 2px solid #2d9c69;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+header h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(45deg, #4caf70, #81c784);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 2px 10px rgba(76, 175, 112, 0.3);
+}
+
+
+/* Контейнер редактора */
+.editor-wrapper {
+  background: rgba(10, 25, 18, 0.95);
+  border: 1px solid #1b5e20;
+  border-radius: 4px;
+  color: #a5d6a7;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Фон с сеткой */
+.editor-wrapper .monaco-editor-background {
+  background-image: 
+    linear-gradient(rgba(45, 156, 105, 0.1) 1px, transparent 0),
+    linear-gradient(90deg, rgba(45, 156, 105, 0.1) 1px, transparent 0);
+  background-size: 20px 20px;
+}
+
+/* Скроллбары */
+.editor-wrapper .monaco-scrollable-element::-webkit-scrollbar {
+  width: 8px;
+}
+
+.editor-wrapper .monaco-scrollable-element::-webkit-scrollbar-track {
+  background: rgba(20, 40, 30, 0.5);
+  border-radius: 4px;
+}
+
+.editor-wrapper .monaco-scrollable-element::-webkit-scrollbar-thumb {
+  background: #2d9c69;
+  border-radius: 4px;
+}
+
+.editor-wrapper .monaco-scrollable-element::-webkit-scrollbar-thumb:hover {
+  background: #4caf70;
+}
+
+
+@media (min-width: 768px) {
+  .editor-wrapper {
+    width: calc(50% - 1rem);
+    display: inline-block;
+    vertical-align: top;
+  }
+}
+
+@media (max-width: 767px) {
+  .editor-wrapper {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+}
