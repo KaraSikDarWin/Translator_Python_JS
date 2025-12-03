@@ -3,7 +3,7 @@ Translator Python -> JavaScript
 **Установка и запуск**
 1. **Склонируйте репозиторий**:
 
-git clone <URL_репозитория>
+git clone [<URL_репозитория>](https://github.com/KaraSikDarWin/Translator_Python_JS)  
 cd <имя_папки_репозитория>
 
 2. **Установите зависимости**:
