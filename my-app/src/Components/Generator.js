@@ -1,5 +1,5 @@
 // generator.js
-import { containsBreak } from './Parser';
+import { containsBreak } from './Parser.js';
 
 let loop_flag_id = 0;
 
@@ -21,18 +21,18 @@ function generateJS(node, indent = 0, context = { isClass: false, loop_flag: nul
         .filter(Boolean)
         .join('\n');
     case 'Assignment': {
+      const targetStr = generateJS(node.target, 0, context);
       const valueStr = generateJS(node.value, 0, context);
-      let assignStr;
-      if (context.isClass) {
-        assignStr = `static ${node.name} = ${valueStr};`;
-      } else {
-        assignStr = `${node.name} = ${valueStr};`;
+      let assignStr = `${targetStr} = ${valueStr};`;
+      if (context.isClass && node.target.type === 'Identifier') {
+        assignStr = `static ${targetStr} = ${valueStr};`;
       }
       return pad + assignStr;
     }
     case 'AugmentedAssignment': {
+      const targetStr = generateJS(node.target, 0, context);
       const valueStr = generateJS(node.value, 0, context);
-      return pad + `${node.name} ${node.operator}= ${valueStr};`;
+      return pad + `${targetStr} ${node.operator}= ${valueStr};`;
     }
     case 'ExpressionStatement':
       return pad + `${generateJS(node.expression, 0, context)};`;

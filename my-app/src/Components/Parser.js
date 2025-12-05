@@ -1,5 +1,5 @@
 // parser.js
-import { tokenizeExpression } from './Tokenizer';
+import { tokenizeExpression } from './Tokenizer.js';
 
 const PRECEDENCE = {
   '**': 10,
@@ -41,7 +41,7 @@ function containsBreak(node) {
       break;
     case 'Assignment':
     case 'AugmentedAssignment':
-      keys = ['value'];
+      keys = ['target', 'value'];
       break;
     case 'BinaryExpression':
     case 'UnaryExpression':
@@ -169,28 +169,22 @@ function createParser(tokens) {
       }
     }
    
-    if (type === 'IDENTIFIER') {
-      const expr = parseExpression();
-      if (peek()[0] === 'OPERATOR' && peek()[1].endsWith('=')) {
-        const [opType, opValue] = next();
-        const right = parseExpression();
-        if (expr.type !== 'Identifier') {
-          throw new Error('Assignment target must be an identifier');
-        }
-        if (opValue === '=') {
-          return { type: 'Assignment', name: expr.name, value: right };
-        } else {
-          return { type: 'AugmentedAssignment', name: expr.name, operator: opValue.slice(0, -1), value: right };
-        }
-      } else {
-        return { type: 'ExpressionStatement', expression: expr };
+    const expr = parseExpression();
+    if (peek()[0] === 'OPERATOR' && peek()[1].endsWith('=')) {
+      const [opType, opValue] = next();
+      const right = parseExpression();
+      const validTargets = ['Identifier', 'MemberExpression', 'SubscriptExpression'];
+      if (!validTargets.includes(expr.type)) {
+        throw new Error('Invalid assignment target');
       }
-    } else if (type === 'OPERATOR') {
-      const expr = parseExpression();
+      if (opValue === '=') {
+        return { type: 'Assignment', target: expr, value: right };
+      } else {
+        return { type: 'AugmentedAssignment', target: expr, operator: opValue.slice(0, -1), value: right };
+      }
+    } else {
       return { type: 'ExpressionStatement', expression: expr };
     }
- 
-    throw new Error(`Unknown statement starting with ${type} ${value}`);
   }
   function parseImport() {
     expect('KEYWORD', 'import');
